@@ -1,0 +1,4 @@
+---
+- name: test
+  template: foo.j2
+  expected_result: foo

@@ -1,0 +1,177 @@
+---
+roles:
+  - name: without_variable_definition
+    files:
+      - without_variable_definition/
+      - without_variable_definition/templates_tests/
+      - without_variable_definition/templates_tests/test.yml
+      - without_variable_definition/templates_tests/meta.yml
+      - without_variable_definition/templates_tests/foo
+      - without_variable_definition/templates/
+      - without_variable_definition/templates/foo.j2
+
+  - name: with_defaults
+    files:
+      - with_defaults/
+      - with_defaults/defaults/
+      - with_defaults/defaults/main.yml
+      - with_defaults/templates/
+      - with_defaults/templates/foo.j2
+      - with_defaults/templates_tests/
+      - with_defaults/templates_tests/test_defaults/
+      - with_defaults/templates_tests/test_defaults/foo
+      - with_defaults/templates_tests/test_inventory/
+      - with_defaults/templates_tests/test_inventory/foo
+      - with_defaults/templates_tests/test_inventory/inventory.yml
+      - with_defaults/templates_tests/test.yml
+      - with_defaults/templates_tests/meta.yml
+
+  - name: with_defaults_alt_filename_1
+    files:
+      - with_defaults_alt_filename_1/
+      - with_defaults_alt_filename_1/defaults/
+      - with_defaults_alt_filename_1/defaults/main.yaml
+      - with_defaults_alt_filename_1/templates/
+      - with_defaults_alt_filename_1/templates/foo.j2
+      - with_defaults_alt_filename_1/templates_tests/
+      - with_defaults_alt_filename_1/templates_tests/test_defaults/
+      - with_defaults_alt_filename_1/templates_tests/test_defaults/foo
+      - with_defaults_alt_filename_1/templates_tests/test_inventory/
+      - with_defaults_alt_filename_1/templates_tests/test_inventory/foo
+      - with_defaults_alt_filename_1/templates_tests/test_inventory/inventory.yml
+      - with_defaults_alt_filename_1/templates_tests/test.yml
+      - with_defaults_alt_filename_1/templates_tests/meta.yml
+
+  - name: with_defaults_alt_filename_2
+    files:
+      - with_defaults_alt_filename_2/
+      - with_defaults_alt_filename_2/defaults/
+      - with_defaults_alt_filename_2/defaults/main
+      - with_defaults_alt_filename_2/templates/
+      - with_defaults_alt_filename_2/templates/foo.j2
+      - with_defaults_alt_filename_2/templates_tests/
+      - with_defaults_alt_filename_2/templates_tests/test_defaults/
+      - with_defaults_alt_filename_2/templates_tests/test_defaults/foo
+      - with_defaults_alt_filename_2/templates_tests/test_inventory/
+      - with_defaults_alt_filename_2/templates_tests/test_inventory/foo
+      - with_defaults_alt_filename_2/templates_tests/test_inventory/inventory.yml
+      - with_defaults_alt_filename_2/templates_tests/test.yml
+      - with_defaults_alt_filename_2/templates_tests/meta.yml
+
+  - name: with_defaults_and_vars
+    files:
+      - with_defaults_and_vars/
+      - with_defaults_and_vars/defaults/
+      - with_defaults_and_vars/defaults/main.yml
+      - with_defaults_and_vars/templates/
+      - with_defaults_and_vars/templates/foo.j2
+      - with_defaults_and_vars/templates_tests/
+      - with_defaults_and_vars/templates_tests/test.yml
+      - with_defaults_and_vars/templates_tests/test_vars/
+      - with_defaults_and_vars/templates_tests/test_vars/foo
+      - with_defaults_and_vars/templates_tests/test_vars/inventory.yml
+      - with_defaults_and_vars/templates_tests/meta.yml
+      - with_defaults_and_vars/templates_tests/test_extra/
+      - with_defaults_and_vars/templates_tests/test_extra/extra.yml
+      - with_defaults_and_vars/templates_tests/test_extra/foo
+      - with_defaults_and_vars/templates_tests/test_extra/inventory.yml
+      - with_defaults_and_vars/vars/
+      - with_defaults_and_vars/vars/main.yml
+
+  - name: with_defaults_and_vars_alt_filename_1
+    files:
+      - with_defaults_and_vars_alt_filename_1/
+      - with_defaults_and_vars_alt_filename_1/defaults/
+      - with_defaults_and_vars_alt_filename_1/defaults/main.yaml
+      - with_defaults_and_vars_alt_filename_1/templates/
+      - with_defaults_and_vars_alt_filename_1/templates/foo.j2
+      - with_defaults_and_vars_alt_filename_1/templates_tests/
+      - with_defaults_and_vars_alt_filename_1/templates_tests/test.yml
+      - with_defaults_and_vars_alt_filename_1/templates_tests/test_vars/
+      - with_defaults_and_vars_alt_filename_1/templates_tests/test_vars/foo
+      - with_defaults_and_vars_alt_filename_1/templates_tests/test_vars/inventory.yml
+      - with_defaults_and_vars_alt_filename_1/templates_tests/meta.yml
+      - with_defaults_and_vars_alt_filename_1/templates_tests/test_extra/
+      - with_defaults_and_vars_alt_filename_1/templates_tests/test_extra/extra.yml
+      - with_defaults_and_vars_alt_filename_1/templates_tests/test_extra/foo
+      - with_defaults_and_vars_alt_filename_1/templates_tests/test_extra/inventory.yml
+      - with_defaults_and_vars_alt_filename_1/vars/
+      - with_defaults_and_vars_alt_filename_1/vars/main.yaml
+
+  - name: with_defaults_and_vars_alt_filename_2
+    files:
+      - with_defaults_and_vars_alt_filename_2/
+      - with_defaults_and_vars_alt_filename_2/defaults/
+      - with_defaults_and_vars_alt_filename_2/defaults/main
+      - with_defaults_and_vars_alt_filename_2/templates/
+      - with_defaults_and_vars_alt_filename_2/templates/foo.j2
+      - with_defaults_and_vars_alt_filename_2/templates_tests/
+      - with_defaults_and_vars_alt_filename_2/templates_tests/test.yml
+      - with_defaults_and_vars_alt_filename_2/templates_tests/test_vars/
+      - with_defaults_and_vars_alt_filename_2/templates_tests/test_vars/foo
+      - with_defaults_and_vars_alt_filename_2/templates_tests/test_vars/inventory.yml
+      - with_defaults_and_vars_alt_filename_2/templates_tests/meta.yml
+      - with_defaults_and_vars_alt_filename_2/templates_tests/test_extra/
+      - with_defaults_and_vars_alt_filename_2/templates_tests/test_extra/extra.yml
+      - with_defaults_and_vars_alt_filename_2/templates_tests/test_extra/foo
+      - with_defaults_and_vars_alt_filename_2/templates_tests/test_extra/inventory.yml
+      - with_defaults_and_vars_alt_filename_2/vars/
+      - with_defaults_and_vars_alt_filename_2/vars/main
+
+  - name: multiple_files_with_test_definitions
+    files:
+      - multiple_files_with_test_definitions/
+      - multiple_files_with_test_definitions/_test-foo.yml
+      - multiple_files_with_test_definitions/_test.yml
+      - multiple_files_with_test_definitions/templates_tests/
+      - multiple_files_with_test_definitions/templates_tests/_test-bar.yml
+      - multiple_files_with_test_definitions/templates_tests/_test.yml
+      - multiple_files_with_test_definitions/templates_tests/subdir/
+      - multiple_files_with_test_definitions/templates_tests/subdir/_test-baz.yml
+      - multiple_files_with_test_definitions/templates_tests/subdir/_test.yml
+      - multiple_files_with_test_definitions/templates_tests/subdir/test-baz.yml
+      - multiple_files_with_test_definitions/templates_tests/subdir/test.yml
+      - multiple_files_with_test_definitions/templates_tests/meta.yml
+      - multiple_files_with_test_definitions/templates_tests/test-bar.yml
+      - multiple_files_with_test_definitions/templates_tests/test.yml
+      - multiple_files_with_test_definitions/test-foo.yml
+      - multiple_files_with_test_definitions/test.yml
+
+  - name: badly_formatted_test_definition
+    files:
+      - badly_formatted_test_definition/
+      - badly_formatted_test_definition/templates_tests/
+      - badly_formatted_test_definition/templates_tests/meta.yml
+      - badly_formatted_test_definition/templates_tests/test.yml
+
+  - name: invalid_test_definition
+    files:
+      - invalid_test_definition/
+      - invalid_test_definition/templates_tests/
+      - invalid_test_definition/templates_tests/meta.yml
+      - invalid_test_definition/templates_tests/test.yml
+
+  - name: tests_metadata_error
+    files:
+      - tests_metadata_error/
+      - tests_metadata_error/templates_tests/
+      - tests_metadata_error/templates_tests/test.yml
+
+  - name: unsupported_tests_version
+    files:
+      - unsupported_tests_version/
+      - unsupported_tests_version/templates_tests/
+      - unsupported_tests_version/templates_tests/meta.yml
+      - unsupported_tests_version/templates_tests/test.yml
+
+  - name: test_failure
+    files:
+      - test_failure/
+      - test_failure/defaults/
+      - test_failure/defaults/main.yml
+      - test_failure/templates/
+      - test_failure/templates/foo.j2
+      - test_failure/templates_tests/
+      - test_failure/templates_tests/foo
+      - test_failure/templates_tests/meta.yml
+      - test_failure/templates_tests/test.yml

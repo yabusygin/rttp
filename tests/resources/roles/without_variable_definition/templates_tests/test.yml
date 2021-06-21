@@ -1,0 +1,5 @@
+---
+tests:
+  - name: test without variable definition
+    template: foo.j2
+    expected_result: foo
