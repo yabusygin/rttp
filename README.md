@@ -11,3 +11,4 @@ configuration files. Development of complex templates requires testing tools.
 This project contains:
 
 * [Role Templates Testing Protocol (RTTP) specification](doc/specification.md)
+* `rttptool` -- RTTP reference implementation

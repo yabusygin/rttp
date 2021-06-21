@@ -1,0 +1,11 @@
+---
+tests:
+  - name: test variable definition in role "defaults/"
+    template: foo.j2
+    expected_result: test_defaults/foo
+
+  - name: test variable definition in inventory
+    template: foo.j2
+    variables:
+      inventory: test_inventory/inventory.yml
+    expected_result: test_inventory/foo
