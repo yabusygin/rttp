@@ -10,7 +10,7 @@ exit_status_hook() {
 
 trap exit_status_hook EXIT
 
-PACKAGES="rttptool tests"
+PACKAGES="templtest tests"
 
 echo "Running mypy..."
 mypy $PACKAGES

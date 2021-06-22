@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "rttptool"
+name = "templtest"
 version = "0.1.0"
 description = "Role Templates Testing Protocol (RTTP) reference inplementation."
 authors = ["Alexey Busygin <yaabusygin@gmail.com>"]
@@ -19,7 +19,7 @@ pycodestyle = "^2.7"
 mypy = "0.812"
 
 [tool.poetry.scripts]
-templtest = 'rttptool.cli:main'
+templtest = 'templtest.cli:main'
 
 [tool.pylint."MESSAGES CONTROL"]
 disable = [

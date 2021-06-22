@@ -2,7 +2,7 @@ from argparse import Namespace
 from pathlib import Path
 from unittest import TestCase
 
-from rttptool.cli import _parse_args
+from templtest.cli import _parse_args
 
 
 class ParseArguments(TestCase):

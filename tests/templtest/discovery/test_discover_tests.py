@@ -1,8 +1,8 @@
 from pathlib import Path
 from unittest import TestCase
 
-from rttptool.discovery import discover_tests, TestDefinition
-from rttptool.exception import TestDefinitionError
+from templtest.discovery import discover_tests, TestDefinition
+from templtest.exception import TestDefinitionError
 
 from ...util import change_working_directory, extract_role, TempDirectory
 

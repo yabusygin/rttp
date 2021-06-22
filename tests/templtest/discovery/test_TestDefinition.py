@@ -3,8 +3,8 @@
 from pathlib import Path
 from unittest import TestCase
 
-from rttptool.discovery import TestDefinition, Variables
-from rttptool.exception import TestDefinitionError
+from templtest.discovery import TestDefinition, Variables
+from templtest.exception import TestDefinitionError
 
 
 class CheckInventory(TestCase):

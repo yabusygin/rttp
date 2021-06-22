@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from rttptool.discovery import _iter_testdefs
-from rttptool.exception import TestDefinitionError
+from templtest.discovery import _iter_testdefs
+from templtest.exception import TestDefinitionError
 
 
 class CreateTestDefinitionList(TestCase):

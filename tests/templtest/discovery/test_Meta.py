@@ -6,8 +6,8 @@ from unittest import TestCase
 
 from packaging.version import Version
 
-from rttptool.discovery import Meta
-from rttptool.exception import TestDefinitionError
+from templtest.discovery import Meta
+from templtest.exception import TestDefinitionError
 
 from ...util import change_working_directory, TempDirectory
 
