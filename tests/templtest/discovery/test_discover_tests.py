@@ -112,5 +112,5 @@ class DiscoverTests(TestCase):
             with self.assertRaises(TestDefinitionError) as ctxmgr:
                 next(discover_tests(tests_path))
             actual = ctxmgr.exception.args[0]
-            expect = "unsupported RTTP version"
+            expect = "unsupported testing speification version"
             self.assertEqual(expect, actual)

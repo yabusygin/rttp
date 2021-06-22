@@ -7,7 +7,7 @@ from yaml import safe_load, YAMLError
 from .exception import TestDefinitionError
 
 
-SUPPORTED_RTTP_VERSION = "0.1"
+SUPPORTED_SPEC_VERSION = "0.1"
 
 
 class Meta(NamedTuple):
@@ -23,12 +23,14 @@ class Meta(NamedTuple):
         try:
             version_string = document["version"]
         except KeyError as exc:
-            raise TestDefinitionError("RTTP version is not specified") from exc
+            msg = "testing speification version is not specified"
+            raise TestDefinitionError(msg) from exc
 
         try:
             version = Version(version_string)
         except (InvalidVersion, TypeError) as exc:
-            raise TestDefinitionError("invalid RTTP version") from exc
+            msg = "invalid testing speification version"
+            raise TestDefinitionError(msg) from exc
 
         return cls(version)
 
@@ -217,8 +219,8 @@ def discover_tests(base_path: Path = Path("templates_tests")) \
         msg = "failed to get tests metadata"
         raise TestDefinitionError(msg) from exc
 
-    if meta.version != Version(SUPPORTED_RTTP_VERSION):
-        msg = "unsupported RTTP version"
+    if meta.version != Version(SUPPORTED_SPEC_VERSION):
+        msg = "unsupported testing speification version"
         raise TestDefinitionError(msg)
 
     for path in _find(base_path, "**/test*.yml"):
