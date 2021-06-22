@@ -204,6 +204,11 @@ def _iter_testdefs(document: Any) -> Iterator[TestDefinition]:
         raise TestDefinitionError(msg)
 
 
+def _find(base_path: Path, pattern: str) -> Iterator[Path]:
+    for path in base_path.glob(pattern):
+        yield path.relative_to(base_path)
+
+
 def discover_tests(base_path: Path = Path("templates_tests")) \
         -> Iterator[Tuple[TestDefinition, Path]]:
     try:
@@ -216,8 +221,8 @@ def discover_tests(base_path: Path = Path("templates_tests")) \
         msg = "unsupported RTTP version"
         raise TestDefinitionError(msg)
 
-    for path in base_path.glob("**/test*.yml"):
-        data = path.read_text()
+    for path in _find(base_path, "**/test*.yml"):
+        data = base_path.joinpath(path).read_text()
         try:
             document = safe_load(data)
         except YAMLError as exc:
