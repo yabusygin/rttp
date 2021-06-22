@@ -26,10 +26,10 @@ class DiscoverTests(TestCase):
                 for item in discovered
             }
             expect = {
-                Path("templates_tests", "test.yml"),
-                Path("templates_tests", "test-bar.yml"),
-                Path("templates_tests", "subdir", "test.yml"),
-                Path("templates_tests", "subdir", "test-baz.yml"),
+                Path("test.yml"),
+                Path("test-bar.yml"),
+                Path("subdir", "test.yml"),
+                Path("subdir", "test-baz.yml"),
             }
             self.assertEqual(expect, actual)
 
@@ -58,10 +58,10 @@ class DiscoverTests(TestCase):
                 for item in discovered
             }
             expect = {
-                Path(tests_path, "test.yml"),
-                Path(tests_path, "test-bar.yml"),
-                Path(tests_path, "subdir", "test.yml"),
-                Path(tests_path, "subdir", "test-baz.yml"),
+                Path("test.yml"),
+                Path("test-bar.yml"),
+                Path("subdir", "test.yml"),
+                Path("subdir", "test-baz.yml"),
             }
             self.assertEqual(expect, actual)
 
@@ -70,13 +70,12 @@ class DiscoverTests(TestCase):
             role_name = "badly_formatted_test_definition"
             extract_role(role_name, tmpdir_path)
             tests_path = Path(tmpdir_path, role_name, "templates_tests")
-            testdef_path = Path(tests_path, "test.yml")
 
             with self.assertRaises(TestDefinitionError) as ctxmgr:
                 next(discover_tests(tests_path))
             actual = ctxmgr.exception.args[0]
             expect = " ".join((
-                f"test definition file '{testdef_path}' is badly formatted",
+                "test definition file 'test.yml' is badly formatted",
             ))
             self.assertEqual(expect, actual)
 
@@ -85,12 +84,11 @@ class DiscoverTests(TestCase):
             role_name = "invalid_test_definition"
             extract_role(role_name, tmpdir_path)
             tests_path = Path(tmpdir_path, role_name, "templates_tests")
-            testdef_path = Path(tests_path, "test.yml")
 
             with self.assertRaises(TestDefinitionError) as ctxmgr:
                 next(discover_tests(tests_path))
             actual = ctxmgr.exception.args[0]
-            expect = f"invalid definition file '{testdef_path}'"
+            expect = "invalid definition file 'test.yml'"
             self.assertEqual(expect, actual)
 
     def test_metadata_error(self):
