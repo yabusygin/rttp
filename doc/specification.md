@@ -1,12 +1,12 @@
-Ansible Role Templates Testing Specification
-============================================
+Ansible&reg; Role Templates Testing Specification
+=================================================
 
 Version 0.1
 
 Introduction
 ------------
 
-[Ansible][Ansible] is a tool for automation of software deployment and
+[Ansible&reg;][Ansible] is a tool for automation of software deployment and
 configuration management. Ansible uses [Jinja][Jinja] templates to manage
 configuration files. Development of complex templates requires testing tools.
 
@@ -213,3 +213,6 @@ This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
 International License. To view a copy of this license, visit
 http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
 Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+Ansible is a registered trademark of Red Hat, Inc. in the United States and
+other countries.
