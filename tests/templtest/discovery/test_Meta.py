@@ -107,7 +107,7 @@ class LoadTestMeta(TestCase):
                 Meta.load(base_path=tmpdir_path)
 
             actual = ctxmgr.exception.args[0]
-            expect = "RTTP version is not specified"
+            expect = "testing speification version is not specified"
             self.assertEqual(expect, actual)
 
     def test_invalid_version_1(self):
@@ -126,7 +126,7 @@ class LoadTestMeta(TestCase):
                 Meta.load(base_path=tmpdir_path)
 
             actual = ctxmgr.exception.args[0]
-            expect = "invalid RTTP version"
+            expect = "invalid testing speification version"
             self.assertEqual(expect, actual)
 
     def test_invalid_version_2(self):
@@ -145,5 +145,5 @@ class LoadTestMeta(TestCase):
                 Meta.load(base_path=tmpdir_path)
 
             actual = ctxmgr.exception.args[0]
-            expect = "invalid RTTP version"
+            expect = "invalid testing speification version"
             self.assertEqual(expect, actual)

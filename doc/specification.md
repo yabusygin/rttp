@@ -1,12 +1,12 @@
-Role Templates Testing Protocol (RTTP) Specification
-====================================================
+Ansible&reg; Role Templates Testing Specification
+=================================================
 
 Version 0.1
 
 Introduction
 ------------
 
-[Ansible][Ansible] is a tool for automation of software deployment and
+[Ansible&reg;][Ansible] is a tool for automation of software deployment and
 configuration management. Ansible uses [Jinja][Jinja] templates to manage
 configuration files. Development of complex templates requires testing tools.
 
@@ -21,7 +21,7 @@ creates and provisions a new container or virtual machine before each test
 scenario. This test setup process is too slow and CPU/memory consuming to run
 many short and simple template tests.
 
-This document defines a protocol for testing Ansible templates. The testing
+This document defines a specification for testing Ansible templates. The testing
 approach, that lacks the above limitations of the existing tools, is described.
 The specification of test definitions is provided in order to facilitate the
 development of interoperable test runners that implement the described apporach.
@@ -30,8 +30,8 @@ development of interoperable test runners that implement the described apporach.
 [Jinja]: https://jinja.palletsprojects.com/
 [Molecule]: https://github.com/ansible-community/molecule
 
-Protocol Operation
-------------------
+Test Runner Operation
+---------------------
 
 This specfication assumes that the tested templates are located in the
 `templates/` subdirectory of an Ansible role directory.
@@ -68,8 +68,7 @@ directory.
 
 The `templates_tests/` directory must contain `meta.yml` file. This file is a
 YAML document with a single `version` attribute. This attribue specifies a
-version of the test protocol specification. The version of the current
-specification is 0.1.
+version of the specification. The version of the current specification is 0.1.
 
 In order to facilitate an automated test discovery, test definition file names
 have to match a common pattern. This specification defines it as `test*.yml`
@@ -213,3 +212,6 @@ This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
 International License. To view a copy of this license, visit
 http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
 Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+Ansible is a registered trademark of Red Hat, Inc. in the United States and
+other countries.
