@@ -4,7 +4,7 @@ from pathlib import Path
 from textwrap import dedent
 from unittest import TestCase
 
-from rttptool.cli import main
+from templtest.cli import main
 
 from ...util import extract_role, TempDirectory
 

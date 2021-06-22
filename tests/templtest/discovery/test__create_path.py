@@ -1,8 +1,8 @@
 from pathlib import Path
 from unittest import TestCase
 
-from rttptool.discovery import _create_path
-from rttptool.exception import TestDefinitionError
+from templtest.discovery import _create_path
+from templtest.exception import TestDefinitionError
 
 
 class CreatePath(TestCase):

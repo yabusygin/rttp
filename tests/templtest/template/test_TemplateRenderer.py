@@ -3,7 +3,7 @@
 from pathlib import Path
 from unittest import TestCase
 
-from rttptool.template import TemplateRenderer
+from templtest.template import TemplateRenderer
 
 from ...util import extract_role, TempDirectory
 

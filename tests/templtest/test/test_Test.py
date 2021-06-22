@@ -4,9 +4,9 @@ from pathlib import Path
 from textwrap import dedent
 from unittest import TestCase
 
-from rttptool.discovery import TestDefinition, Variables
-from rttptool.exception import AssertError
-from rttptool.test import Test
+from templtest.discovery import TestDefinition, Variables
+from templtest.exception import AssertError
+from templtest.test import Test
 
 from ...util import extract_role, TempDirectory
 

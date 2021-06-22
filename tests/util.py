@@ -27,7 +27,7 @@ from yaml import safe_load
 
 class TempDirectory:
 
-    PREFIX = "rttptool.test."
+    PREFIX = "templtest.test."
 
     def __init__(self):
         # pylint: disable=consider-using-with
