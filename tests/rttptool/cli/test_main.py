@@ -50,3 +50,23 @@ class RunProgram(TestCase):
                 """,
             )
             self.assertEqual(expect, actual)
+
+    def test_invalid_test_definition(self):
+        with TempDirectory() as tmpdir_path:
+            role_name = "invalid_path_in_test_definition"
+            extract_role(role_name, tmpdir_path)
+            role_path = Path(tmpdir_path, role_name)
+
+            stream = StringIO()
+            with redirect_stdout(stream):
+                main(argv=["--role-path={}".format(role_path)])
+            actual = stream.getvalue()
+            expect = ": ".join([
+                "TestDefinitionError",
+                "invalid definition file 'test.yml'",
+                "invalid test definition #0",
+                "invalid variables attribute",
+                "invalid inventory attribute",
+                "path is empty string",
+            ])
+            self.assertEqual(expect, actual)

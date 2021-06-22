@@ -1,0 +1,7 @@
+---
+tests:
+  - name: test
+    template: foo.j2
+    variables:
+      inventory: ""
+    expected_result: foo

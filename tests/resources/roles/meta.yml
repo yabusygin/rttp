@@ -175,3 +175,13 @@ roles:
       - test_failure/templates_tests/foo
       - test_failure/templates_tests/meta.yml
       - test_failure/templates_tests/test.yml
+
+  - name: invalid_path_in_test_definition
+    files:
+      - invalid_path_in_test_definition/
+      - invalid_path_in_test_definition/templates/
+      - invalid_path_in_test_definition/templates/foo.j2
+      - invalid_path_in_test_definition/templates_tests/
+      - invalid_path_in_test_definition/templates_tests/foo
+      - invalid_path_in_test_definition/templates_tests/meta.yml
+      - invalid_path_in_test_definition/templates_tests/test.yml
