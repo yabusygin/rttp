@@ -18,6 +18,9 @@ pydocstyle = "^6.0"
 pycodestyle = "^2.7"
 mypy = "0.812"
 
+[tool.poetry.scripts]
+templtest = 'rttptool.cli:main'
+
 [tool.pylint."MESSAGES CONTROL"]
 disable = [
     # prefer pycodestyle
