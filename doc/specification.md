@@ -21,7 +21,7 @@ creates and provisions a new container or virtual machine before each test
 scenario. This test setup process is too slow and CPU/memory consuming to run
 many short and simple template tests.
 
-This document defines a protocol for testing Ansible templates. The testing
+This document defines a specification for testing Ansible templates. The testing
 approach, that lacks the above limitations of the existing tools, is described.
 The specification of test definitions is provided in order to facilitate the
 development of interoperable test runners that implement the described apporach.
@@ -68,8 +68,7 @@ directory.
 
 The `templates_tests/` directory must contain `meta.yml` file. This file is a
 YAML document with a single `version` attribute. This attribue specifies a
-version of the test protocol specification. The version of the current
-specification is 0.1.
+version of the specification. The version of the current specification is 0.1.
 
 In order to facilitate an automated test discovery, test definition file names
 have to match a common pattern. This specification defines it as `test*.yml`
