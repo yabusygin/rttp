@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "templtest"
 version = "0.1.0"
-description = "Role Templates Testing Protocol (RTTP) reference inplementation."
+description = "A tool for testing Ansible role templates."
 authors = ["Alexey Busygin <yaabusygin@gmail.com>"]
 license = "MIT"
 

@@ -1,5 +1,5 @@
-Role Templates Testing Protocol (RTTP) Specification
-====================================================
+Ansible Role Templates Testing Specification
+============================================
 
 Version 0.1
 
@@ -30,8 +30,8 @@ development of interoperable test runners that implement the described apporach.
 [Jinja]: https://jinja.palletsprojects.com/
 [Molecule]: https://github.com/ansible-community/molecule
 
-Protocol Operation
-------------------
+Test Runner Operation
+---------------------
 
 This specfication assumes that the tested templates are located in the
 `templates/` subdirectory of an Ansible role directory.
