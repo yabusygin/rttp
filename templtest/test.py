@@ -20,21 +20,21 @@ from typing import Optional
 
 from .discovery import TestDefinition, Variables
 from .exception import AssertError
-from .template import Jinja2TemplateRenderer
+from .template import AnsibleTemplateRenderer
 
 
 class Test:
     _role_path: Path
     _test_definition_src_path: Path
     _test_definition: TestDefinition
-    _renderer: Jinja2TemplateRenderer
+    _renderer: AnsibleTemplateRenderer
 
     def __init__(self, role_path: Path, src_path: Path,
                  testdef: TestDefinition):
         self._role_path = role_path
         self._test_definition_src_path = src_path
         self._test_definition = testdef
-        self._renderer = Jinja2TemplateRenderer(self._role_path)
+        self._renderer = AnsibleTemplateRenderer(self._role_path)
 
     @property
     def _base_path(self) -> Path:
