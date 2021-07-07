@@ -17,6 +17,8 @@
 from pathlib import Path
 from typing import Any, Dict, Optional
 
+from ansible.parsing.dataloader import DataLoader
+from ansible.template import Templar
 from jinja2 import Environment, FileSystemLoader
 from yaml import safe_load
 
@@ -67,6 +69,30 @@ class Jinja2TemplateRenderer(BaseTemplateRenderer):
         renderer = environment.get_template(str(template))
         variables = self.load_variables(inventory, extra)
         return renderer.render(**variables)
+
+
+class AnsibleTemplateRenderer(BaseTemplateRenderer):
+
+    def render(self, template: Path, inventory: Optional[Path] = None,
+               extra: Optional[Path] = None) -> str:
+        loader = self._create_loader(self.templates)
+        variables = self.load_variables(inventory, extra)
+        templar = self._create_templar(loader, variables)
+        template_text = Path(self.templates, template).read_text()
+        return templar.template(template_text, fail_on_undefined=False)
+
+    def _create_loader(self, basedir: Path) -> DataLoader:
+        loader = DataLoader()
+        loader.set_basedir(basedir)
+        return loader
+
+    def _create_templar(self, loader: DataLoader,
+                        variables: TemplateVars) -> Templar:
+        templar = Templar(loader=loader, variables=variables)
+        templar.environment.keep_trailing_newline = True
+        templar.environment.lstrip_blocks = True
+        templar.environment.trim_blocks = True
+        return templar
 
 
 def _load_var_dir(directory: Path) -> TemplateVars:

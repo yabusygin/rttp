@@ -58,7 +58,7 @@ class ExtractRole(TestCase):
             template_path = Path(tmpdir_path, "without_variable_definition",
                                  "templates", "foo.j2")
             actual = template_path.read_text()
-            expect = "{{ foo }}\n"
+            expect = "{{ foo|default(\"\") }}\n"
             self.assertEqual(expect, actual)
 
     def test_not_found(self):
