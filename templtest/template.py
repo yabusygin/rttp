@@ -75,24 +75,25 @@ class AnsibleTemplateRenderer(BaseTemplateRenderer):
 
     def render(self, template: Path, inventory: Optional[Path] = None,
                extra: Optional[Path] = None) -> str:
-        loader = self._create_loader(self.templates)
+        loader = _create_dataloader(self.templates)
         variables = self.load_variables(inventory, extra)
-        templar = self._create_templar(loader, variables)
+        templar = _create_templar(loader, variables)
         template_text = Path(self.templates, template).read_text()
         return templar.template(template_text, fail_on_undefined=False)
 
-    def _create_loader(self, basedir: Path) -> DataLoader:
-        loader = DataLoader()
-        loader.set_basedir(basedir)
-        return loader
 
-    def _create_templar(self, loader: DataLoader,
-                        variables: TemplateVars) -> Templar:
-        templar = Templar(loader=loader, variables=variables)
-        templar.environment.keep_trailing_newline = True
-        templar.environment.lstrip_blocks = True
-        templar.environment.trim_blocks = True
-        return templar
+def _create_dataloader(basedir: Path) -> DataLoader:
+    loader = DataLoader()
+    loader.set_basedir(basedir)
+    return loader
+
+
+def _create_templar(loader: DataLoader, variables: TemplateVars) -> Templar:
+    templar = Templar(loader=loader, variables=variables)
+    templar.environment.keep_trailing_newline = True
+    templar.environment.lstrip_blocks = True
+    templar.environment.trim_blocks = True
+    return templar
 
 
 def _load_var_dir(directory: Path) -> TemplateVars:
