@@ -164,3 +164,16 @@ class TestTemplateRenderer(TestCase):
             )
             expect = expect_path.read_text()
             self.assertEqual(expect, actual)
+
+    def test_ansible_filter(self):
+        with TempDirectory() as tmpdir_path:
+            role_name = "ansible_filter"
+            extract_role(role_name, tmpdir_path)
+            role_path = Path(tmpdir_path, role_name)
+            test_path = Path(role_path, "templates_tests")
+            expect_path = Path(test_path, "foo")
+
+            renderer = AnsibleTemplateRenderer(role=role_path)
+            actual = renderer.render(template=Path("foo.j2"))
+            expect = expect_path.read_text()
+            self.assertEqual(expect, actual)
