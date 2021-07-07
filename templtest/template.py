@@ -53,7 +53,7 @@ class BaseTemplateRenderer:
         return variables
 
 
-class TemplateRenderer(BaseTemplateRenderer):
+class Jinja2TemplateRenderer(BaseTemplateRenderer):
 
     def render(self, template: Path, inventory: Optional[Path] = None,
                extra: Optional[Path] = None) -> str:
