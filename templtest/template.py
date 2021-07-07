@@ -15,8 +15,10 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
+from ansible.parsing.dataloader import DataLoader
+from ansible.template import Templar
 from jinja2 import Environment, FileSystemLoader
 from yaml import safe_load
 
@@ -24,59 +26,86 @@ from yaml import safe_load
 TemplateVars = Dict[str, Any]
 
 
-class TemplateRenderer:
+class BaseTemplateRenderer:
 
-    _DEFAULT_FILENAMES = ["main.yml", "main.yaml", "main"]
+    templates: Path
+    defaults: Path
+    vars: Path
 
     def __init__(self, role: Path):
-        self._role = role
-        self._environment = Environment(
-            loader=FileSystemLoader(
-                searchpath=str(Path(self._role, "templates")),
-            ),
+        self.templates = Path(role, "templates")
+        self.defaults = Path(role, "defaults")
+        self.vars = Path(role, "vars")
+
+    def render(self, template: Path, inventory: Optional[Path] = None,
+               extra: Optional[Path] = None) -> str:
+        raise NotImplementedError()
+
+    def load_variables(self, inventory: Optional[Path],
+                       extra: Optional[Path]) -> TemplateVars:
+        variables: TemplateVars = {}
+        if self.defaults.is_dir():
+            variables.update(_load_var_dir(self.defaults))
+        if inventory is not None:
+            variables.update(_yaml_load(inventory))
+        if self.vars.is_dir():
+            variables.update(_load_var_dir(self.vars))
+        if extra is not None:
+            variables.update(_yaml_load(extra))
+        return variables
+
+
+class Jinja2TemplateRenderer(BaseTemplateRenderer):
+
+    def render(self, template: Path, inventory: Optional[Path] = None,
+               extra: Optional[Path] = None) -> str:
+        loader = FileSystemLoader(searchpath=str(self.templates))
+        environment = Environment(
+            loader=loader,
             keep_trailing_newline=True,
             lstrip_blocks=True,
             trim_blocks=True,
         )
-
-    def render(self,
-               template: Path,
-               inventory: Path = None,
-               extra: Path = None) -> str:
-        renderer = self._environment.get_template(str(template))
-        inventory_variables = _load_variables(inventory) \
-            if inventory is not None \
-            else None
-        extra_variables = _load_variables(extra) \
-            if extra is not None \
-            else None
-        variables = self._merge_variables(inventory_variables, extra_variables)
+        renderer = environment.get_template(str(template))
+        variables = self.load_variables(inventory, extra)
         return renderer.render(**variables)
 
-    def _merge_variables(self,
-                         inventory: TemplateVars = None,
-                         extra: TemplateVars = None) -> TemplateVars:
-        if inventory is None:
-            inventory = {}
-        if extra is None:
-            extra = {}
 
-        result = {}
-        result.update(self._load_role_variables(dirname="defaults"))
-        result.update(inventory)
-        result.update(self._load_role_variables(dirname="vars"))
-        result.update(extra)
-        return result
+class AnsibleTemplateRenderer(BaseTemplateRenderer):
 
-    def _load_role_variables(self, dirname: str) -> TemplateVars:
-        for filename in self._DEFAULT_FILENAMES:
-            path = Path(self._role, dirname, filename)
-            if not path.is_file():
-                continue
-            return _load_variables(path)
-        return {}
+    def render(self, template: Path, inventory: Optional[Path] = None,
+               extra: Optional[Path] = None) -> str:
+        loader = _create_dataloader(self.templates)
+        variables = self.load_variables(inventory, extra)
+        templar = _create_templar(loader, variables)
+        template_text = Path(self.templates, template).read_text()
+        return templar.template(template_text, fail_on_undefined=False)
 
 
-def _load_variables(path: Path) -> TemplateVars:
-    data = path.read_text()
-    return safe_load(data)
+def _create_dataloader(basedir: Path) -> DataLoader:
+    loader = DataLoader()
+    loader.set_basedir(basedir)
+    return loader
+
+
+def _create_templar(loader: DataLoader, variables: TemplateVars) -> Templar:
+    templar = Templar(loader=loader, variables=variables)
+    templar.environment.keep_trailing_newline = True
+    templar.environment.lstrip_blocks = True
+    templar.environment.trim_blocks = True
+    return templar
+
+
+def _load_var_dir(directory: Path) -> TemplateVars:
+    for filename in ["main.yml", "main.yaml", "main"]:
+        path = Path(directory, filename)
+        if path.is_file():
+            return _yaml_load(path)
+    return {}
+
+
+def _yaml_load(path: Path) -> TemplateVars:
+    if path.is_file():
+        data = path.read_text()
+        return safe_load(data)
+    return {}

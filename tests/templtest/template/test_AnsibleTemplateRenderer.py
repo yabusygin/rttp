@@ -19,7 +19,7 @@
 from pathlib import Path
 from unittest import TestCase
 
-from templtest.template import TemplateRenderer
+from templtest.template import AnsibleTemplateRenderer
 
 from ...util import extract_role, TempDirectory
 
@@ -34,7 +34,7 @@ class TestTemplateRenderer(TestCase):
             test_path = Path(role_path, "templates_tests")
             expect_path = Path(test_path, "foo")
 
-            renderer = TemplateRenderer(role=role_path)
+            renderer = AnsibleTemplateRenderer(role=role_path)
             actual = renderer.render(template=Path("foo.j2"))
             expect = expect_path.read_text()
             self.assertEqual(expect, actual)
@@ -47,7 +47,7 @@ class TestTemplateRenderer(TestCase):
             test_path = Path(role_path, "templates_tests", "test_defaults")
             expect_path = Path(test_path, "foo")
 
-            renderer = TemplateRenderer(role=role_path)
+            renderer = AnsibleTemplateRenderer(role=role_path)
             actual = renderer.render(template=Path("foo.j2"))
             expect = expect_path.read_text()
             self.assertEqual(expect, actual)
@@ -60,7 +60,7 @@ class TestTemplateRenderer(TestCase):
             test_path = Path(role_path, "templates_tests", "test_defaults")
             expect_path = Path(test_path, "foo")
 
-            renderer = TemplateRenderer(role=role_path)
+            renderer = AnsibleTemplateRenderer(role=role_path)
             actual = renderer.render(template=Path("foo.j2"))
             expect = expect_path.read_text()
             self.assertEqual(expect, actual)
@@ -73,7 +73,7 @@ class TestTemplateRenderer(TestCase):
             test_path = Path(role_path, "templates_tests", "test_defaults")
             expect_path = Path(test_path, "foo")
 
-            renderer = TemplateRenderer(role=role_path)
+            renderer = AnsibleTemplateRenderer(role=role_path)
             actual = renderer.render(template=Path("foo.j2"))
             expect = expect_path.read_text()
             self.assertEqual(expect, actual)
@@ -87,7 +87,7 @@ class TestTemplateRenderer(TestCase):
             inventory_path = Path(test_path, "inventory.yml")
             expect_path = Path(test_path, "foo")
 
-            renderer = TemplateRenderer(role=role_path)
+            renderer = AnsibleTemplateRenderer(role=role_path)
             actual = renderer.render(
                 template=Path("foo.j2"),
                 inventory=inventory_path,
@@ -104,7 +104,7 @@ class TestTemplateRenderer(TestCase):
             inventory_path = Path(test_path, "inventory.yml")
             expect_path = Path(test_path, "foo")
 
-            renderer = TemplateRenderer(role=role_path)
+            renderer = AnsibleTemplateRenderer(role=role_path)
             actual = renderer.render(
                 template=Path("foo.j2"),
                 inventory=inventory_path,
@@ -121,7 +121,7 @@ class TestTemplateRenderer(TestCase):
             inventory_path = Path(test_path, "inventory.yml")
             expect_path = Path(test_path, "foo")
 
-            renderer = TemplateRenderer(role=role_path)
+            renderer = AnsibleTemplateRenderer(role=role_path)
             actual = renderer.render(
                 template=Path("foo.j2"),
                 inventory=inventory_path,
@@ -138,7 +138,7 @@ class TestTemplateRenderer(TestCase):
             inventory_path = Path(test_path, "inventory.yml")
             expect_path = Path(test_path, "foo")
 
-            renderer = TemplateRenderer(role=role_path)
+            renderer = AnsibleTemplateRenderer(role=role_path)
             actual = renderer.render(
                 template=Path("foo.j2"),
                 inventory=inventory_path,
@@ -156,11 +156,24 @@ class TestTemplateRenderer(TestCase):
             extra_path = Path(test_path, "extra.yml")
             expect_path = Path(test_path, "foo")
 
-            renderer = TemplateRenderer(role=role_path)
+            renderer = AnsibleTemplateRenderer(role=role_path)
             actual = renderer.render(
                 template=Path("foo.j2"),
                 inventory=inventory_path,
                 extra=extra_path,
             )
+            expect = expect_path.read_text()
+            self.assertEqual(expect, actual)
+
+    def test_ansible_filter(self):
+        with TempDirectory() as tmpdir_path:
+            role_name = "ansible_filter"
+            extract_role(role_name, tmpdir_path)
+            role_path = Path(tmpdir_path, role_name)
+            test_path = Path(role_path, "templates_tests")
+            expect_path = Path(test_path, "foo")
+
+            renderer = AnsibleTemplateRenderer(role=role_path)
+            actual = renderer.render(template=Path("foo.j2"))
             expect = expect_path.read_text()
             self.assertEqual(expect, actual)

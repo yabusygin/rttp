@@ -1,5 +1,17 @@
 ---
 roles:
+  - name: ansible_filter
+    files:
+      - ansible_filter/
+      - ansible_filter/defaults/
+      - ansible_filter/defaults/main.yml
+      - ansible_filter/templates/
+      - ansible_filter/templates/foo.j2
+      - ansible_filter/templates_tests/
+      - ansible_filter/templates_tests/test.yml
+      - ansible_filter/templates_tests/meta.yml
+      - ansible_filter/templates_tests/foo
+
   - name: without_variable_definition
     files:
       - without_variable_definition/
