@@ -3,7 +3,7 @@ name = "templtest"
 version = "0.1.0"
 description = "A tool for testing Ansible role templates."
 authors = ["Alexey Busygin <yaabusygin@gmail.com>"]
-license = "MIT"
+license = "GPLv3+"
 
 [tool.poetry.dependencies]
 python = "^3.6"
