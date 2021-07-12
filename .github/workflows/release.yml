@@ -9,6 +9,9 @@ jobs:
     name: release to PyPI
     runs-on: ubuntu-latest
     steps:
+      - name: check-out repository
+        uses: actions/checkout@v2.3.4
+
       - name: set up Python
         uses: actions/setup-python@v1
         with:
