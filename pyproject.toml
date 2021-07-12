@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "templtest"
-version = "0.2.2"
+version = "0.2.3"
 description = "A tool for testing Ansible role templates."
 authors = ["Alexey Busygin <yaabusygin@gmail.com>"]
 license = "GPLv3+"
