@@ -13,6 +13,16 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: "3.9"
+
+      - name: install Poetry
+        run: |
+          curl \
+              --silent \
+              --show-error \
+              --location \
+              https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py
+          | python -
+
       - name: publish package
         run: poetry publish --build
         env:
