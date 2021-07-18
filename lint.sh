@@ -16,7 +16,7 @@ echo "Running mypy..."
 mypy $PACKAGES
 
 echo "Running pylint..."
-pylint $PACKAGES
+pylint --redefining-builtins-modules=sys $PACKAGES
 
 echo "Running pycodestyle..."
 pycodestyle $PACKAGES
