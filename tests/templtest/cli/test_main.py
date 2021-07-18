@@ -53,7 +53,8 @@ class RunProgram(TestCase):
 
             stream = StringIO()
             with redirect_stdout(stream):
-                main(argv=["--role-path={}".format(role_path)])
+                with self.assertRaises(SystemExit) as ctxmgr:
+                    main(argv=["--role-path={}".format(role_path)])
             actual = stream.getvalue()
             expect = dedent(
                 """\
@@ -67,6 +68,10 @@ class RunProgram(TestCase):
             )
             self.assertEqual(expect, actual)
 
+            expect = 1
+            actual = ctxmgr.exception.code
+            self.assertEqual(expect, actual)
+
     def test_invalid_test_definition(self):
         with TempDirectory() as tmpdir_path:
             role_name = "invalid_path_in_test_definition"
@@ -75,7 +80,8 @@ class RunProgram(TestCase):
 
             stream = StringIO()
             with redirect_stdout(stream):
-                main(argv=["--role-path={}".format(role_path)])
+                with self.assertRaises(SystemExit) as ctxmgr:
+                    main(argv=["--role-path={}".format(role_path)])
             actual = stream.getvalue()
             expect = ": ".join([
                 "TestDefinitionError",
@@ -85,4 +91,8 @@ class RunProgram(TestCase):
                 "invalid inventory attribute",
                 "path is empty string",
             ])
+            self.assertEqual(expect, actual)
+
+            expect = 1
+            actual = ctxmgr.exception.code
             self.assertEqual(expect, actual)

@@ -16,6 +16,7 @@
 
 from argparse import ArgumentParser, Namespace
 from pathlib import Path
+from sys import exit
 from typing import List, Optional
 
 from .discovery import discover_tests
@@ -42,7 +43,7 @@ def main(argv: Optional[List[str]] = None) -> None:
                 except AssertError as exc:
                     print("fail")
                     print(exc.args[0])
-                    break
+                    exit(1)
                 else:
                     print("ok")
         except TestDefinitionError as exc:
@@ -51,3 +52,4 @@ def main(argv: Optional[List[str]] = None) -> None:
             while exception is not None:
                 print(": {}".format(exception.args[0]), end="")
                 exception = exception.__cause__
+            exit(1)
