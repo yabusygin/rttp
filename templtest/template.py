@@ -79,7 +79,11 @@ class AnsibleTemplateRenderer(BaseTemplateRenderer):
         variables = self.load_variables(inventory, extra)
         templar = _create_templar(loader, variables)
         template_text = Path(self.templates, template).read_text()
-        return templar.template(template_text, fail_on_undefined=False)
+        return templar.template(
+            variable=template_text,
+            convert_data=False,
+            fail_on_undefined=False,
+        )
 
 
 def _create_dataloader(basedir: Path) -> DataLoader:
