@@ -177,3 +177,17 @@ class TestTemplateRenderer(TestCase):
             actual = renderer.render(template=Path("foo.j2"))
             expect = expect_path.read_text()
             self.assertEqual(expect, actual)
+
+    def test_json_template(self):
+        with TempDirectory() as tmpdir_path:
+            role_name = "json_template"
+            extract_role(role_name, tmpdir_path)
+            role_path = Path(tmpdir_path, role_name)
+            test_path = Path(role_path, "templates_tests")
+            expect_path = Path(test_path, "foo.json")
+
+            renderer = AnsibleTemplateRenderer(role=role_path)
+            actual = renderer.render(template=Path("foo.json.j2"))
+            self.assertIsInstance(actual, str)
+            expect = expect_path.read_text()
+            self.assertEqual(expect, actual)

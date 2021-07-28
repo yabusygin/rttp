@@ -12,6 +12,16 @@ roles:
       - ansible_filter/templates_tests/meta.yml
       - ansible_filter/templates_tests/foo
 
+  - name: json_template
+    files:
+      - json_template/
+      - json_template/templates_tests/
+      - json_template/templates_tests/test.yml
+      - json_template/templates_tests/meta.yml
+      - json_template/templates_tests/foo.json
+      - json_template/templates/
+      - json_template/templates/foo.json.j2
+
   - name: without_variable_definition
     files:
       - without_variable_definition/

@@ -1,0 +1,5 @@
+---
+tests:
+  - name: test JSON document template
+    template: foo.json.j2
+    expected_result: foo.json
