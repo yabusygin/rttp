@@ -36,7 +36,7 @@ class TestTemplateRenderer(TestCase):
 
             renderer = AnsibleTemplateRenderer(role=role_path)
             actual = renderer.render(template=Path("foo.j2"))
-            expect = expect_path.read_text()
+            expect = expect_path.read_text(encoding="utf-8")
             self.assertEqual(expect, actual)
 
     def test_defaults_variable_definition(self):
@@ -49,7 +49,7 @@ class TestTemplateRenderer(TestCase):
 
             renderer = AnsibleTemplateRenderer(role=role_path)
             actual = renderer.render(template=Path("foo.j2"))
-            expect = expect_path.read_text()
+            expect = expect_path.read_text(encoding="utf-8")
             self.assertEqual(expect, actual)
 
     def test_defaults_variable_definition_alt_filename_1(self):
@@ -62,7 +62,7 @@ class TestTemplateRenderer(TestCase):
 
             renderer = AnsibleTemplateRenderer(role=role_path)
             actual = renderer.render(template=Path("foo.j2"))
-            expect = expect_path.read_text()
+            expect = expect_path.read_text(encoding="utf-8")
             self.assertEqual(expect, actual)
 
     def test_defaults_variable_definition_alt_filename_2(self):
@@ -75,7 +75,7 @@ class TestTemplateRenderer(TestCase):
 
             renderer = AnsibleTemplateRenderer(role=role_path)
             actual = renderer.render(template=Path("foo.j2"))
-            expect = expect_path.read_text()
+            expect = expect_path.read_text(encoding="utf-8")
             self.assertEqual(expect, actual)
 
     def test_inventory_variable_definition(self):
@@ -92,7 +92,7 @@ class TestTemplateRenderer(TestCase):
                 template=Path("foo.j2"),
                 inventory=inventory_path,
             )
-            expect = expect_path.read_text()
+            expect = expect_path.read_text(encoding="utf-8")
             self.assertEqual(expect, actual)
 
     def test_vars_variable_definition(self):
@@ -109,7 +109,7 @@ class TestTemplateRenderer(TestCase):
                 template=Path("foo.j2"),
                 inventory=inventory_path,
             )
-            expect = expect_path.read_text()
+            expect = expect_path.read_text(encoding="utf-8")
             self.assertEqual(expect, actual)
 
     def test_vars_variable_definition_alt_filename_1(self):
@@ -126,7 +126,7 @@ class TestTemplateRenderer(TestCase):
                 template=Path("foo.j2"),
                 inventory=inventory_path,
             )
-            expect = expect_path.read_text()
+            expect = expect_path.read_text(encoding="utf-8")
             self.assertEqual(expect, actual)
 
     def test_vars_variable_definition_alt_filename_2(self):
@@ -143,7 +143,7 @@ class TestTemplateRenderer(TestCase):
                 template=Path("foo.j2"),
                 inventory=inventory_path,
             )
-            expect = expect_path.read_text()
+            expect = expect_path.read_text(encoding="utf-8")
             self.assertEqual(expect, actual)
 
     def test_extra_variable_definition(self):
@@ -162,7 +162,7 @@ class TestTemplateRenderer(TestCase):
                 inventory=inventory_path,
                 extra=extra_path,
             )
-            expect = expect_path.read_text()
+            expect = expect_path.read_text(encoding="utf-8")
             self.assertEqual(expect, actual)
 
     def test_ansible_filter(self):
@@ -175,7 +175,7 @@ class TestTemplateRenderer(TestCase):
 
             renderer = AnsibleTemplateRenderer(role=role_path)
             actual = renderer.render(template=Path("foo.j2"))
-            expect = expect_path.read_text()
+            expect = expect_path.read_text(encoding="utf-8")
             self.assertEqual(expect, actual)
 
     def test_json_template(self):
@@ -189,5 +189,5 @@ class TestTemplateRenderer(TestCase):
             renderer = AnsibleTemplateRenderer(role=role_path)
             actual = renderer.render(template=Path("foo.json.j2"))
             self.assertIsInstance(actual, str)
-            expect = expect_path.read_text()
+            expect = expect_path.read_text(encoding="utf-8")
             self.assertEqual(expect, actual)

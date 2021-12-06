@@ -78,7 +78,8 @@ class AnsibleTemplateRenderer(BaseTemplateRenderer):
         loader = _create_dataloader(self.templates)
         variables = self.load_variables(inventory, extra)
         templar = _create_templar(loader, variables)
-        template_text = Path(self.templates, template).read_text()
+        template_fullpath = Path(self.templates, template)
+        template_text = template_fullpath.read_text(encoding="utf-8")
         return templar.template(
             variable=template_text,
             convert_data=False,

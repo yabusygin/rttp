@@ -55,7 +55,7 @@ class Meta(NamedTuple):
         data_path = Path(base_path, "meta.yml")
 
         try:
-            data = data_path.read_text()
+            data = data_path.read_text(encoding="utf-8")
         except FileNotFoundError as exc:
             raise TestDefinitionError("meta is not defined") from exc
 
@@ -240,7 +240,7 @@ def discover_tests(base_path: Path = Path("templates_tests")) \
         raise TestDefinitionError(msg)
 
     for path in _find(base_path, "**/test*.yml"):
-        data = base_path.joinpath(path).read_text()
+        data = base_path.joinpath(path).read_text(encoding="utf-8")
         try:
             document = safe_load(data)
         except YAMLError as exc:
