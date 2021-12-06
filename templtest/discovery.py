@@ -99,7 +99,7 @@ class Variables(NamedTuple):
                         msg = "invalid extra attribute"
                         raise TestDefinitionError(msg) from exc
             else:
-                msg = "unknown attribute: {}".format(key)
+                msg = f"unknown attribute: {key}"
                 raise TestDefinitionError(msg)
 
         return cls(inventory, extra)
@@ -164,7 +164,7 @@ class TestDefinition(NamedTuple):
                         msg = "invalid expected result attribute"
                         raise TestDefinitionError(msg) from exc
             else:
-                msg = "unknown attribute: {}".format(key)
+                msg = f"unknown attribute: {key}"
                 raise TestDefinitionError(msg)
 
         if name is None:
@@ -211,11 +211,11 @@ def _iter_testdefs(document: Any) -> Iterator[TestDefinition]:
                     try:
                         testdef = TestDefinition.create(testdef_doc)
                     except TestDefinitionError as exc:
-                        msg = "invalid test definition #{}".format(testdef_idx)
+                        msg = f"invalid test definition #{testdef_idx}"
                         raise TestDefinitionError(msg) from exc
                     yield testdef
         else:
-            msg = "unknown attribute: {}".format(key)
+            msg = f"unknown attribute: {key}"
             raise TestDefinitionError(msg)
     if not tests_defined:
         msg = "test definitions are not specified"
@@ -244,12 +244,12 @@ def discover_tests(base_path: Path = Path("templates_tests")) \
         try:
             document = safe_load(data)
         except YAMLError as exc:
-            msg = "test definition file '{}' is badly formatted".format(path)
+            msg = f"test definition file '{path}' is badly formatted"
             raise TestDefinitionError(msg) from exc
 
         try:
             for testdef in _iter_testdefs(document):
                 yield (testdef, path)
         except TestDefinitionError as exc:
-            msg = "invalid definition file '{}'".format(path)
+            msg = f"invalid definition file '{path}'"
             raise TestDefinitionError(msg) from exc
