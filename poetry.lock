@@ -28,6 +28,21 @@ PyYAML = "*"
 resolvelib = ">=0.5.3,<0.6.0"
 
 [[package]]
+name = "ansible-core"
+version = "2.12.1"
+description = "Radically simple IT automation"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+cryptography = "*"
+jinja2 = "*"
+packaging = "*"
+PyYAML = "*"
+resolvelib = ">=0.5.3,<0.6.0"
+
+[[package]]
 name = "astroid"
 version = "2.9.0"
 description = "An abstract syntax tree for Python with inference support."
@@ -327,7 +342,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "9e8d3ed192ad237715be76340f505024ec01fd7633843d012e080cfc71dcea31"
+content-hash = "850398731784ead5fd7ce01bef53fae16003af8f6df490217f25e1cd44b30347"
 
 [metadata.files]
 ansible-base = [
@@ -335,6 +350,7 @@ ansible-base = [
 ]
 ansible-core = [
     {file = "ansible-core-2.11.7.tar.gz", hash = "sha256:b87188beacfac1bb6dc5cf65663f3c52e66e0f9990742db00a3dca71ebae2eee"},
+    {file = "ansible-core-2.12.1.tar.gz", hash = "sha256:a4508707262be11bb4dd98a006f1b14817879a055e6b6c46ad9fca8894fb3073"},
 ]
 astroid = [
     {file = "astroid-2.9.0-py3-none-any.whl", hash = "sha256:776ca0b748b4ad69c00bfe0fff38fa2d21c338e12c84aa9715ee0d473c422778"},
