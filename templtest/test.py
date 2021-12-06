@@ -73,14 +73,14 @@ class Test:
         )
         expect = expect_path.read_text()
 
+        fromfile_path = expect_path.relative_to(self._role_path)
+        tofile_path = Path("templates", self._test_definition.template)
         diff = "\n".join(
             unified_diff(
                 a=expect.splitlines(),
                 b=actual.splitlines(),
-                fromfile=str(expect_path.relative_to(self._role_path)),
-                tofile="render({})".format(
-                    Path("templates", self._test_definition.template),
-                ),
+                fromfile=str(fromfile_path),
+                tofile=f"render({tofile_path})",
                 lineterm="",
             ),
         )

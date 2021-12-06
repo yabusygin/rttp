@@ -42,6 +42,7 @@ class LoadTestMeta(TestCase):
                     version: "1.0"
                     """,
                 ),
+                encoding="utf-8",
             )
             with change_working_directory(tmpdir_path):
                 meta = Meta.load()
@@ -60,6 +61,7 @@ class LoadTestMeta(TestCase):
                     version: "1.0"
                     """,
                 ),
+                encoding="utf-8",
             )
             meta = Meta.load(base_path=tmpdir_path)
 
@@ -79,7 +81,7 @@ class LoadTestMeta(TestCase):
     def test_invalid_yaml_formatting(self):
         with TempDirectory() as tmpdir_path:
             meta_path = Path(tmpdir_path, "meta.yml")
-            meta_path.write_text("@!%$#")
+            meta_path.write_text("@!%$#", encoding="utf-8")
 
             with self.assertRaises(TestDefinitionError) as ctxmgr:
                 Meta.load(base_path=tmpdir_path)
@@ -98,6 +100,7 @@ class LoadTestMeta(TestCase):
                     "1.0"
                     """,
                 ),
+                encoding="utf-8",
             )
 
             with self.assertRaises(TestDefinitionError) as ctxmgr:
@@ -117,6 +120,7 @@ class LoadTestMeta(TestCase):
                     {}
                     """,
                 ),
+                encoding="utf-8",
             )
 
             with self.assertRaises(TestDefinitionError) as ctxmgr:
@@ -136,6 +140,7 @@ class LoadTestMeta(TestCase):
                     version: 1.0
                     """,
                 ),
+                encoding="utf-8",
             )
 
             with self.assertRaises(TestDefinitionError) as ctxmgr:
@@ -155,6 +160,7 @@ class LoadTestMeta(TestCase):
                     version: invalid
                     """,
                 ),
+                encoding="utf-8",
             )
 
             with self.assertRaises(TestDefinitionError) as ctxmgr:

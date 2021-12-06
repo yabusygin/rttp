@@ -37,7 +37,7 @@ def main(argv: Optional[List[str]] = None) -> None:
         try:
             for testdef, src_path in discover_tests(tests_path):
                 test = Test(args.role_path, src_path, testdef)
-                print("[{}] {} ... ".format(src_path, testdef.name), end="")
+                print(f"[{src_path}] {testdef.name} ... ", end="")
                 try:
                     test.run()
                 except AssertError as exc:
@@ -50,6 +50,6 @@ def main(argv: Optional[List[str]] = None) -> None:
             exception: Optional[BaseException] = exc
             print("TestDefinitionError", end="")
             while exception is not None:
-                print(": {}".format(exception.args[0]), end="")
+                print(f": {exception.args[0]}", end="")
                 exception = exception.__cause__
             exit(1)

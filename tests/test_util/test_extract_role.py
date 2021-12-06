@@ -57,7 +57,7 @@ class ExtractRole(TestCase):
 
             template_path = Path(tmpdir_path, "without_variable_definition",
                                  "templates", "foo.j2")
-            actual = template_path.read_text()
+            actual = template_path.read_text(encoding="utf-8")
             expect = "{{ foo|default(\"\") }}\n"
             self.assertEqual(expect, actual)
 

@@ -68,7 +68,7 @@ def _get_role_files(name: str) -> List[str]:
         if role_meta["name"] == name
     ]
     if not matched:
-        raise KeyError("role '{}' meta is not found".format(name))
+        raise KeyError(f"role '{name}' meta is not found")
     return matched[0]["files"]
 
 

@@ -35,7 +35,7 @@ class RunProgram(TestCase):
 
             stream = StringIO()
             with redirect_stdout(stream):
-                main(argv=["--role-path={}".format(role_path)])
+                main(argv=[f"--role-path={role_path}"])
             actual = stream.getvalue()
             expect = dedent(
                 """\
@@ -54,7 +54,7 @@ class RunProgram(TestCase):
             stream = StringIO()
             with redirect_stdout(stream):
                 with self.assertRaises(SystemExit) as ctxmgr:
-                    main(argv=["--role-path={}".format(role_path)])
+                    main(argv=[f"--role-path={role_path}"])
             actual = stream.getvalue()
             expect = dedent(
                 """\
@@ -81,7 +81,7 @@ class RunProgram(TestCase):
             stream = StringIO()
             with redirect_stdout(stream):
                 with self.assertRaises(SystemExit) as ctxmgr:
-                    main(argv=["--role-path={}".format(role_path)])
+                    main(argv=[f"--role-path={role_path}"])
             actual = stream.getvalue()
             expect = ": ".join([
                 "TestDefinitionError",
