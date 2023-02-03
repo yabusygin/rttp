@@ -18,9 +18,7 @@ jobs:
           python-version: "3.9"
 
       - name: install Poetry
-        run: |
-          curl --silent --show-error --location https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-          echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+        run: curl --silent --show-error --location https://install.python-poetry.org | python -
 
       - name: publish package
         run: poetry publish --build
