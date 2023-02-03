@@ -150,7 +150,6 @@ class GetBasePath(TestCase):
 
 
 class RunTestCase(TestCase):
-    # pylint: disable=no-self-use
 
     def test_without_variable_definition(self):
         with TempDirectory() as tmpdir_path:
