@@ -17,11 +17,17 @@ packaging = ">=22,<24"
 [tool.poetry.dev-dependencies]
 black = "^23.1"
 mypy = "0.991"
+types-PyYAML = "^6.0"
 pylint = [
     { version = "~2.13", python = "<3.7.2" },
     { version = "^2.16", python = "^3.7.2" }
 ]
 pydocstyle = "^6.3"
+pytest = "^7.2"
+pytest-black-ng = "~0.4"
+pytest-mypy = "~0.10"
+pytest-pylint = "~0.19"
+pytest-pydocstyle = "^2.3"
 
 [tool.poetry.scripts]
 templtest = "templtest.cli:main"
@@ -29,9 +35,6 @@ templtest = "templtest.cli:main"
 [[tool.mypy.overrides]]
 module = "ansible.*"
 ignore_missing_imports = true
-
-[tool.mypy]
-install_types = true
 
 [tool.pylint."MESSAGES CONTROL"]
 disable = [
@@ -47,6 +50,20 @@ ignore = [
     "D1",       # missing docstrings
     "D203",     # 1 blank line required before class docstring
     "D213"      # multi-line docstring summary should start at the second line
+]
+
+[tool.pytest.ini_options]
+minversion = "7.2"
+addopts = [
+    "--import-mode=importlib",
+    "--black",
+    "--mypy",
+    "--pylint",
+    "--pydocstyle"
+]
+testpaths = [
+    "templtest",
+    "tests"
 ]
 
 [build-system]

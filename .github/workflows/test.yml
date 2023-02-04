@@ -29,8 +29,5 @@ jobs:
       - name: install dependencies
         run: poetry install
 
-      - name: run linters
-        run: poetry run ./lint.sh
-
       - name: run tests
-        run: poetry run python -m unittest discover --verbose
+        run: poetry run pytest
