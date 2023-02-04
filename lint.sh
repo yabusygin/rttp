@@ -19,7 +19,7 @@ echo "Running mypy..."
 mypy --non-interactive $PACKAGES
 
 echo "Running pylint..."
-pylint --redefining-builtins-modules=sys $PACKAGES
+pylint $PACKAGES
 
 echo "Running pydocstyle..."
 pydocstyle $PACKAGES

@@ -16,7 +16,7 @@
 
 from argparse import ArgumentParser, Namespace
 from pathlib import Path
-from sys import exit
+from sys import exit  # pylint: disable=redefined-builtin
 from typing import List, Optional
 
 from .discovery import discover_tests
