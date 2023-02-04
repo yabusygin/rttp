@@ -15,12 +15,12 @@ ansible-core = [
 packaging = ">=22,<24"
 
 [tool.poetry.dev-dependencies]
+black = "^23.1"
 pylint = [
     { version = "~2.13", python = "<3.7.2" },
     { version = "^2.16", python = "^3.7.2" }
 ]
 pydocstyle = "^6.3"
-pycodestyle = "^2.10"
 mypy = "0.991"
 
 [tool.poetry.scripts]
@@ -35,15 +35,6 @@ install_types = true
 
 [tool.pylint."MESSAGES CONTROL"]
 disable = [
-    # prefer pycodestyle
-    "line-too-long",
-    "unnecessary-semicolon",
-    "trailing-whitespace",
-    "missing-final-newline",
-    "bad-indentation",
-    "multiple-statements",
-    "bare-except",
-
     # prefer pydocstyle
     "missing-module-docstring",
     "missing-class-docstring",

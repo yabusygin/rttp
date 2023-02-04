@@ -21,7 +21,6 @@ from ..util import change_working_directory, TempDirectory
 
 
 class ChangeWorkingDirectory(TestCase):
-
     def test(self):
         with TempDirectory() as tempdir_path:
             cwd = Path.cwd()

@@ -24,7 +24,6 @@ from templtest.exception import TestDefinitionError
 
 
 class CreateVariables(TestCase):
-
     def test_empty_1(self):
         actual = Variables.create(document={})
         expect = Variables(

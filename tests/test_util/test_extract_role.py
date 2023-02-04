@@ -24,32 +24,38 @@ from ..util import (
 
 
 class ExtractRole(TestCase):
-
     def test(self):
         with TempDirectory() as tmpdir_path:
             extract_role("without_variable_definition", tmpdir_path)
             actual = sorted(tmpdir_path.glob("**/*"))
             expect = [
                 Path(tmpdir_path, "without_variable_definition"),
-                Path(tmpdir_path, "without_variable_definition",
-                     "templates"),
-                Path(tmpdir_path, "without_variable_definition",
-                     "templates", "foo.j2"),
-                Path(tmpdir_path, "without_variable_definition",
-                     "templates_tests"),
-                Path(tmpdir_path, "without_variable_definition",
-                     "templates_tests", "foo"),
-                Path(tmpdir_path, "without_variable_definition",
-                     "templates_tests", "meta.yml"),
-                Path(tmpdir_path, "without_variable_definition",
-                     "templates_tests", "test.yml"),
+                Path(tmpdir_path, "without_variable_definition", "templates"),
+                Path(tmpdir_path, "without_variable_definition", "templates", "foo.j2"),
+                Path(tmpdir_path, "without_variable_definition", "templates_tests"),
+                Path(
+                    tmpdir_path, "without_variable_definition", "templates_tests", "foo"
+                ),
+                Path(
+                    tmpdir_path,
+                    "without_variable_definition",
+                    "templates_tests",
+                    "meta.yml",
+                ),
+                Path(
+                    tmpdir_path,
+                    "without_variable_definition",
+                    "templates_tests",
+                    "test.yml",
+                ),
             ]
-            self. assertEqual(expect, actual)
+            self.assertEqual(expect, actual)
 
-            template_path = Path(tmpdir_path, "without_variable_definition",
-                                 "templates", "foo.j2")
+            template_path = Path(
+                tmpdir_path, "without_variable_definition", "templates", "foo.j2"
+            )
             actual = template_path.read_text(encoding="utf-8")
-            expect = "{{ foo|default(\"\") }}\n"
+            expect = '{{ foo|default("") }}\n'
             self.assertEqual(expect, actual)
 
     def test_not_found(self):

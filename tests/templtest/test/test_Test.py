@@ -150,7 +150,6 @@ class GetBasePath(TestCase):
 
 
 class RunTestCase(TestCase):
-
     def test_without_variable_definition(self):
         with TempDirectory() as tmpdir_path:
             role_name = "without_variable_definition"

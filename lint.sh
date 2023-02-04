@@ -12,14 +12,14 @@ trap exit_status_hook EXIT
 
 PACKAGES="templtest tests"
 
+echo "Running black..."
+black --check $PACKAGES
+
 echo "Running mypy..."
 mypy --non-interactive $PACKAGES
 
 echo "Running pylint..."
 pylint --redefining-builtins-modules=sys $PACKAGES
-
-echo "Running pycodestyle..."
-pycodestyle $PACKAGES
 
 echo "Running pydocstyle..."
 pydocstyle $PACKAGES

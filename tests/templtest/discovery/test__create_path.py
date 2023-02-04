@@ -22,7 +22,6 @@ from templtest.exception import TestDefinitionError
 
 
 class CreatePath(TestCase):
-
     def test(self):
         actual = _create_path("path/to/file")
         expect = Path("path", "to", "file")

@@ -21,7 +21,6 @@ from templtest.exception import TestDefinitionError
 
 
 class CreateTestDefinitionList(TestCase):
-
     def test_empty_1(self):
         document = {
             "tests": None,
