@@ -24,7 +24,7 @@ pycodestyle = "^2.10"
 mypy = "0.991"
 
 [tool.poetry.scripts]
-templtest = 'templtest.cli:main'
+templtest = "templtest.cli:main"
 
 [tool.pylint."MESSAGES CONTROL"]
 disable = [
