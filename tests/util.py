@@ -16,27 +16,16 @@
 
 from contextlib import contextmanager
 from itertools import chain
+from importlib.resources import (
+    path as resource_path,
+    read_text,
+)
 from os import chdir
 from pathlib import Path
 from shutil import copyfile
 from tempfile import TemporaryDirectory
 from types import TracebackType
 from typing import Iterator, List, Optional, Type
-
-try:
-    # pylint: disable=unused-import
-    # Mypy type checking is currently disabled. See issue #1153.
-    from importlib.resources import (   # type: ignore
-        path as resource_path,
-        read_text,
-    )
-except ImportError:
-    # pylint: disable=unused-import
-    # Mypy type checking is currently disabled. See issue #1153.
-    from importlib_resources import (   # type: ignore
-        path as resource_path,
-        read_text,
-    )
 
 from yaml import safe_load
 

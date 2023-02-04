@@ -17,15 +17,6 @@
 from pathlib import Path
 from unittest import TestCase
 
-try:
-    # pylint: disable=unused-import
-    # Mypy type checking is currently disabled. See issue #1153.
-    from importlib.resources import path as resource_path   # type: ignore
-except ImportError:
-    # pylint: disable=unused-import
-    # Mypy type checking is currently disabled. See issue #1153.
-    from importlib_resources import path as resource_path   # type: ignore
-
 from ..util import (
     extract_role,
     TempDirectory,
