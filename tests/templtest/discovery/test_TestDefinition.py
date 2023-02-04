@@ -24,7 +24,6 @@ from templtest.exception import TestDefinitionError
 
 
 class CheckInventory(TestCase):
-
     def test_present(self):
         testdef = TestDefinition(
             name="test",
@@ -51,7 +50,6 @@ class CheckInventory(TestCase):
 
 
 class CheckExtra(TestCase):
-
     def test_present(self):
         testdef = TestDefinition(
             name="test",
@@ -78,7 +76,6 @@ class CheckExtra(TestCase):
 
 
 class CreateTestDefinition(TestCase):
-
     def test_without_variables_1(self):
         document = {
             "name": "test",

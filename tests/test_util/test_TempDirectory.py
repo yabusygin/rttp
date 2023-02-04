@@ -22,7 +22,6 @@ from ..util import TempDirectory
 
 
 class TestTempDirectory(TestCase):
-
     def test(self):
         with TempDirectory() as temp_dir_path:
             self.assertTrue(temp_dir_path.is_dir())

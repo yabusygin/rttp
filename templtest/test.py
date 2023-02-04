@@ -29,8 +29,7 @@ class Test:
     _test_definition: TestDefinition
     _renderer: AnsibleTemplateRenderer
 
-    def __init__(self, role_path: Path, src_path: Path,
-                 testdef: TestDefinition):
+    def __init__(self, role_path: Path, src_path: Path, testdef: TestDefinition):
         self._role_path = role_path
         self._test_definition_src_path = src_path
         self._test_definition = testdef

@@ -22,7 +22,6 @@ from templtest.cli import _parse_args
 
 
 class ParseArguments(TestCase):
-
     def test_default_args(self):
         actual = _parse_args([])
         expect = Namespace(role_path=Path("."))

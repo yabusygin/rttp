@@ -29,7 +29,6 @@ from ...util import change_working_directory, TempDirectory
 
 
 class LoadTestMeta(TestCase):
-
     def test_default_path(self):
         with TempDirectory() as tmpdir_path:
             tests_path = Path(tmpdir_path, "templates_tests")

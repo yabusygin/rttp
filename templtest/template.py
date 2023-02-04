@@ -27,7 +27,6 @@ TemplateVars = Dict[str, Any]
 
 
 class BaseTemplateRenderer:
-
     templates: Path
     defaults: Path
     vars: Path
@@ -37,12 +36,17 @@ class BaseTemplateRenderer:
         self.defaults = Path(role, "defaults")
         self.vars = Path(role, "vars")
 
-    def render(self, template: Path, inventory: Optional[Path] = None,
-               extra: Optional[Path] = None) -> str:
+    def render(
+        self,
+        template: Path,
+        inventory: Optional[Path] = None,
+        extra: Optional[Path] = None,
+    ) -> str:
         raise NotImplementedError()
 
-    def load_variables(self, inventory: Optional[Path],
-                       extra: Optional[Path]) -> TemplateVars:
+    def load_variables(
+        self, inventory: Optional[Path], extra: Optional[Path]
+    ) -> TemplateVars:
         variables: TemplateVars = {}
         if self.defaults.is_dir():
             variables.update(_load_var_dir(self.defaults))
@@ -56,9 +60,12 @@ class BaseTemplateRenderer:
 
 
 class Jinja2TemplateRenderer(BaseTemplateRenderer):
-
-    def render(self, template: Path, inventory: Optional[Path] = None,
-               extra: Optional[Path] = None) -> str:
+    def render(
+        self,
+        template: Path,
+        inventory: Optional[Path] = None,
+        extra: Optional[Path] = None,
+    ) -> str:
         loader = FileSystemLoader(searchpath=str(self.templates))
         environment = Environment(
             loader=loader,
@@ -72,9 +79,12 @@ class Jinja2TemplateRenderer(BaseTemplateRenderer):
 
 
 class AnsibleTemplateRenderer(BaseTemplateRenderer):
-
-    def render(self, template: Path, inventory: Optional[Path] = None,
-               extra: Optional[Path] = None) -> str:
+    def render(
+        self,
+        template: Path,
+        inventory: Optional[Path] = None,
+        extra: Optional[Path] = None,
+    ) -> str:
         loader = _create_dataloader(self.templates)
         variables = self.load_variables(inventory, extra)
         templar = _create_templar(loader, variables)

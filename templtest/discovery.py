@@ -227,8 +227,9 @@ def _find(base_path: Path, pattern: str) -> Iterator[Path]:
         yield path.relative_to(base_path)
 
 
-def discover_tests(base_path: Path = Path("templates_tests")) \
-        -> Iterator[Tuple[TestDefinition, Path]]:
+def discover_tests(
+    base_path: Path = Path("templates_tests"),
+) -> Iterator[Tuple[TestDefinition, Path]]:
     try:
         meta = Meta.load(base_path)
     except TestDefinitionError as exc:

@@ -24,7 +24,6 @@ from ...util import change_working_directory, extract_role, TempDirectory
 
 
 class DiscoverTests(TestCase):
-
     def test_default_path(self):
         with TempDirectory() as tmpdir_path:
             role_name = "multiple_files_with_test_definitions"
@@ -37,10 +36,7 @@ class DiscoverTests(TestCase):
             def get_path(item):
                 return item[1]
 
-            actual = {
-                get_path(item)
-                for item in discovered
-            }
+            actual = {get_path(item) for item in discovered}
             expect = {
                 Path("test.yml"),
                 Path("test-bar.yml"),
@@ -69,10 +65,7 @@ class DiscoverTests(TestCase):
             def get_path(item):
                 return item[1]
 
-            actual = {
-                get_path(item)
-                for item in discovered
-            }
+            actual = {get_path(item) for item in discovered}
             expect = {
                 Path("test.yml"),
                 Path("test-bar.yml"),
@@ -90,9 +83,7 @@ class DiscoverTests(TestCase):
             with self.assertRaises(TestDefinitionError) as ctxmgr:
                 next(discover_tests(tests_path))
             actual = ctxmgr.exception.args[0]
-            expect = " ".join((
-                "test definition file 'test.yml' is badly formatted",
-            ))
+            expect = " ".join(("test definition file 'test.yml' is badly formatted",))
             self.assertEqual(expect, actual)
 
     def test_invalid_test_definition(self):

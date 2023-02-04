@@ -31,7 +31,6 @@ from yaml import safe_load
 
 
 class TempDirectory:
-
     PREFIX = "templtest.test."
 
     def __init__(self):
@@ -41,10 +40,12 @@ class TempDirectory:
     def __enter__(self) -> Path:
         return Path(self._tempdir.__enter__())
 
-    def __exit__(self,
-                 exc_type: Optional[Type[BaseException]],
-                 exc_value: Optional[BaseException],
-                 traceback: Optional[TracebackType]) -> Optional[bool]:
+    def __exit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> Optional[bool]:
         return self._tempdir.__exit__(exc_type, exc_value, traceback)
 
 
@@ -52,9 +53,7 @@ def _get_role_files(name: str) -> List[str]:
     data = read_text(".".join([__package__, "resources", "roles"]), "meta.yml")
     document = safe_load(data)
     matched = [
-        role_meta
-        for role_meta in document["roles"]
-        if role_meta["name"] == name
+        role_meta for role_meta in document["roles"] if role_meta["name"] == name
     ]
     if not matched:
         raise KeyError(f"role '{name}' meta is not found")
@@ -63,9 +62,11 @@ def _get_role_files(name: str) -> List[str]:
 
 def _copy_role_resource(src: Path, dest: Path) -> None:
     roles_package = ".".join([__package__, "resources", "roles"])
-    package = roles_package \
-        if src.parent == Path(".") \
+    package = (
+        roles_package
+        if src.parent == Path(".")
         else ".".join(chain([roles_package], src.parent.parts))
+    )
     with resource_path(package, src.name) as path:
         copyfile(path, dest)
 

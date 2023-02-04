@@ -26,7 +26,6 @@ from ...util import extract_role, TempDirectory
 
 
 class RunProgram(TestCase):
-
     def test_success(self):
         with TempDirectory() as tmpdir_path:
             role_name = "with_defaults"
@@ -83,14 +82,16 @@ class RunProgram(TestCase):
                 with self.assertRaises(SystemExit) as ctxmgr:
                     main(argv=[f"--role-path={role_path}"])
             actual = stream.getvalue()
-            expect = ": ".join([
-                "TestDefinitionError",
-                "invalid definition file 'test.yml'",
-                "invalid test definition #0",
-                "invalid variables attribute",
-                "invalid inventory attribute",
-                "path is empty string",
-            ])
+            expect = ": ".join(
+                [
+                    "TestDefinitionError",
+                    "invalid definition file 'test.yml'",
+                    "invalid test definition #0",
+                    "invalid variables attribute",
+                    "invalid inventory attribute",
+                    "path is empty string",
+                ]
+            )
             self.assertEqual(expect, actual)
 
             expect = 1
