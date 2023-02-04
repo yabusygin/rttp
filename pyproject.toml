@@ -57,6 +57,13 @@ disable = [
     "duplicate-code"
 ]
 
+[tool.pydocstyle]
+ignore = [
+    "D1",       # missing docstrings
+    "D203",     # 1 blank line required before class docstring
+    "D213"      # multi-line docstring summary should start at the second line
+]
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
