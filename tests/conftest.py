@@ -13,3 +13,16 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+from importlib.resources import files
+from pathlib import Path
+from shutil import copytree
+
+from pytest import fixture
+
+
+@fixture
+def resources(tmp_path):
+    src_path = Path(files(__package__), "data")
+    dest_path = Path(tmp_path, "data")
+    return copytree(src_path, dest_path)
