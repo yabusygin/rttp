@@ -35,15 +35,9 @@ install_types = true
 
 [tool.pylint."MESSAGES CONTROL"]
 disable = [
-    # prefer pydocstyle
     "missing-module-docstring",
     "missing-class-docstring",
     "missing-function-docstring",
-
-    # prefer mypy
-    "syntax-error",
-
-    # actually disable
     "too-few-public-methods",
     "duplicate-code"
 ]
