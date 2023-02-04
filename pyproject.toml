@@ -21,7 +21,6 @@ pylint = [
     { version = "^2.16", python = "^3.7.2" }
 ]
 pydocstyle = "^6.3"
-pycodestyle = "^2.10"
 mypy = "0.991"
 
 [tool.poetry.scripts]

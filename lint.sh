@@ -21,9 +21,6 @@ mypy --non-interactive $PACKAGES
 echo "Running pylint..."
 pylint --redefining-builtins-modules=sys $PACKAGES
 
-echo "Running pycodestyle..."
-pycodestyle $PACKAGES
-
 echo "Running pydocstyle..."
 pydocstyle $PACKAGES
 
