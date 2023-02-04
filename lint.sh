@@ -13,7 +13,7 @@ trap exit_status_hook EXIT
 PACKAGES="templtest tests"
 
 echo "Running mypy..."
-mypy $PACKAGES
+mypy --non-interactive $PACKAGES
 
 echo "Running pylint..."
 pylint --redefining-builtins-modules=sys $PACKAGES

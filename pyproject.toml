@@ -26,6 +26,13 @@ mypy = "0.991"
 [tool.poetry.scripts]
 templtest = "templtest.cli:main"
 
+[[tool.mypy.overrides]]
+module = "ansible.*"
+ignore_missing_imports = true
+
+[tool.mypy]
+install_types = true
+
 [tool.pylint."MESSAGES CONTROL"]
 disable = [
     # prefer pycodestyle
