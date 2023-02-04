@@ -15,6 +15,7 @@ ansible-core = [
 packaging = ">=22,<24"
 
 [tool.poetry.dev-dependencies]
+black = "^23.1"
 pylint = [
     { version = "~2.13", python = "<3.7.2" },
     { version = "^2.16", python = "^3.7.2" }
