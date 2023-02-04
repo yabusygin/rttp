@@ -12,6 +12,9 @@ trap exit_status_hook EXIT
 
 PACKAGES="templtest tests"
 
+echo "Running black..."
+black --check $PACKAGES
+
 echo "Running mypy..."
 mypy --non-interactive $PACKAGES
 
