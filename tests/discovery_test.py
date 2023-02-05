@@ -14,8 +14,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-from contextlib import chdir
 from pathlib import Path
+
+# Mypy doesn't understand `from sys import version_info` variant.
+# See: https://github.com/python/mypy/issues/6189
+import sys
 
 from packaging.version import Version
 from pytest import raises
@@ -29,6 +32,11 @@ from templtest.discovery import (
     Variables,
 )
 from templtest.exception import TestDefinitionError
+
+if sys.version_info >= (3, 11):
+    from contextlib import chdir
+else:
+    from contextlib_chdir import chdir
 
 
 class TestMeta:
