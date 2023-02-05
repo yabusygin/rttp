@@ -115,6 +115,10 @@ class TestDefinition:
     variables: Optional[Variables]
     expected_result: Path
 
+    # Notify pytest that this is not a test class.
+    # See: https://github.com/pytest-dev/pytest/issues/1879
+    __test__ = False
+
     def has_inventory(self) -> bool:
         if self.variables is None or self.variables.inventory is None:
             return False

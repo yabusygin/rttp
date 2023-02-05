@@ -20,7 +20,9 @@ class GenericError(Exception):
 
 
 class TestDefinitionError(GenericError):
-    pass
+    # Notify pytest that this is not a test class.
+    # See: https://github.com/pytest-dev/pytest/issues/1879
+    __test__ = False
 
 
 class AssertError(GenericError):
