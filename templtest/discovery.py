@@ -14,8 +14,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Iterator, NamedTuple, Optional, Tuple
+from typing import Any, Iterator, Optional, Tuple
 
 from packaging.version import InvalidVersion, Version
 from yaml import safe_load, YAMLError
@@ -26,7 +27,8 @@ from .exception import TestDefinitionError
 SUPPORTED_SPEC_VERSION = "0.1"
 
 
-class Meta(NamedTuple):
+@dataclass
+class Meta:
     version: Version
 
     @classmethod
@@ -67,7 +69,8 @@ class Meta(NamedTuple):
         return document
 
 
-class Variables(NamedTuple):
+@dataclass
+class Variables:
     inventory: Optional[Path]
     extra: Optional[Path]
 
@@ -105,7 +108,8 @@ class Variables(NamedTuple):
         return cls(inventory, extra)
 
 
-class TestDefinition(NamedTuple):
+@dataclass
+class TestDefinition:
     name: str
     template: Path
     variables: Optional[Variables]
