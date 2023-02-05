@@ -14,11 +14,19 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-from importlib.resources import files
 from pathlib import Path
 from shutil import copytree
 
+# Mypy doesn't understand `from sys import version_info` variant.
+# See: https://github.com/python/mypy/issues/6189
+import sys
+
 from pytest import fixture
+
+if sys.version_info >= (3, 9):
+    from importlib.resources import files
+else:
+    from importlib_resources import files
 
 
 @fixture

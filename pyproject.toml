@@ -15,6 +15,7 @@ ansible-core = [
 packaging = ">=22,<24"
 
 [tool.poetry.dev-dependencies]
+importlib_resources = { version = "^5.7", python = "<3.9" }
 black = "^23.1"
 mypy = "0.991"
 types-PyYAML = "^6.0"
