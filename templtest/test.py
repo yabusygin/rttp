@@ -29,6 +29,10 @@ class Test:
     _test_definition: TestDefinition
     _renderer: AnsibleTemplateRenderer
 
+    # Notify pytest that this is not a test class.
+    # See: https://github.com/pytest-dev/pytest/issues/1879
+    __test__ = False
+
     def __init__(self, role_path: Path, src_path: Path, testdef: TestDefinition):
         self._role_path = role_path
         self._test_definition_src_path = src_path

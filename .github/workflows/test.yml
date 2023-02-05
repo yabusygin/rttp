@@ -29,8 +29,16 @@ jobs:
       - name: install dependencies
         run: poetry install
 
-      - name: run linters
-        run: poetry run ./lint.sh
+      # Workaround for pytest failure when importing ansible-core 2.11
+      # in importlib mode (AttributeError: '_AnsibleCollectionFinder' object
+      # has no attribute 'find_spec').
+      # See:
+      # https://github.com/ansible/ansible-lint/issues/1919
+      # https://github.com/pytest-dev/pytest/blob/1ae778f13ec8350e224ae6a365f21cc0d83af018/src/_pytest/pathlib.py#L496
+      - name: run tests (Python 3.7)
+        run: poetry run pytest --import-mode=prepend
+        if: ${{ matrix.python-version == '3.7' }}
 
-      - name: run tests
-        run: poetry run python -m unittest discover --verbose
+      - name: run tests (Python >= 3.8)
+        run: poetry run pytest
+        if: ${{ matrix.python-version != '3.7' }}

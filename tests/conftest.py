@@ -1,5 +1,5 @@
 # templtest -- a tool for testing Ansible role templates
-# Copyright (C) 2021  Alexey Busygin
+# Copyright (C) 2021-2023  Alexey Busygin
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,16 +14,23 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+from pathlib import Path
+from shutil import copytree
 
-class GenericError(Exception):
-    pass
+# Mypy doesn't understand `from sys import version_info` variant.
+# See: https://github.com/python/mypy/issues/6189
+import sys
+
+from pytest import fixture
+
+if sys.version_info >= (3, 9):
+    from importlib.resources import files
+else:
+    from importlib_resources import files
 
 
-class TestDefinitionError(GenericError):
-    # Notify pytest that this is not a test class.
-    # See: https://github.com/pytest-dev/pytest/issues/1879
-    __test__ = False
-
-
-class AssertError(GenericError):
-    pass
+@fixture
+def resources(tmp_path):
+    src_path = Path(files(__package__), "data")
+    dest_path = Path(tmp_path, "data")
+    return copytree(src_path, dest_path)
